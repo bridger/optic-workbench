@@ -1,0 +1,305 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AE7B7448144A167300E115D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B7447144A167300E115D2 /* Cocoa.framework */; };
+		AE7B7452144A167300E115D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7B7450144A167300E115D2 /* InfoPlist.strings */; };
+		AE7B7454144A167300E115D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7453144A167300E115D2 /* main.m */; };
+		AE7B7458144A167300E115D2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = AE7B7456144A167300E115D2 /* Credits.rtf */; };
+		AE7B745B144A167300E115D2 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B745A144A167300E115D2 /* Document.m */; };
+		AE7B745E144A167300E115D2 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE7B745C144A167300E115D2 /* Document.xib */; };
+		AE7B7461144A167300E115D2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE7B745F144A167300E115D2 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AE7B7443144A167300E115D2 /* OpticWorkbench.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpticWorkbench.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE7B7447144A167300E115D2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		AE7B744A144A167300E115D2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		AE7B744B144A167300E115D2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		AE7B744C144A167300E115D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		AE7B744F144A167300E115D2 /* OpticWorkbench-Info.plist */ = {isa = PBXFileReference; path = "OpticWorkbench-Info.plist"; sourceTree = "<group>"; };
+		AE7B7451144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		AE7B7453144A167300E115D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AE7B7455144A167300E115D2 /* OpticWorkbench-Prefix.pch */ = {isa = PBXFileReference; path = "OpticWorkbench-Prefix.pch"; sourceTree = "<group>"; };
+		AE7B7457144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		AE7B7459144A167300E115D2 /* Document.h */ = {isa = PBXFileReference; path = Document.h; sourceTree = "<group>"; };
+		AE7B745A144A167300E115D2 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
+		AE7B745D144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		AE7B7460144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AE7B7440144A167300E115D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE7B7448144A167300E115D2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AE7B7438144A167300E115D2 = {
+			isa = PBXGroup;
+			children = (
+				AE7B744D144A167300E115D2 /* OpticWorkbench */,
+				AE7B7446144A167300E115D2 /* Frameworks */,
+				AE7B7444144A167300E115D2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AE7B7444144A167300E115D2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE7B7443144A167300E115D2 /* OpticWorkbench.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AE7B7446144A167300E115D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE7B7447144A167300E115D2 /* Cocoa.framework */,
+				AE7B7449144A167300E115D2 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE7B7449144A167300E115D2 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AE7B744A144A167300E115D2 /* AppKit.framework */,
+				AE7B744B144A167300E115D2 /* CoreData.framework */,
+				AE7B744C144A167300E115D2 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		AE7B744D144A167300E115D2 /* OpticWorkbench */ = {
+			isa = PBXGroup;
+			children = (
+				AE7B7459144A167300E115D2 /* Document.h */,
+				AE7B745A144A167300E115D2 /* Document.m */,
+				AE7B745C144A167300E115D2 /* Document.xib */,
+				AE7B745F144A167300E115D2 /* MainMenu.xib */,
+				AE7B744E144A167300E115D2 /* Supporting Files */,
+			);
+			path = OpticWorkbench;
+			sourceTree = "<group>";
+		};
+		AE7B744E144A167300E115D2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE7B744F144A167300E115D2 /* OpticWorkbench-Info.plist */,
+				AE7B7450144A167300E115D2 /* InfoPlist.strings */,
+				AE7B7453144A167300E115D2 /* main.m */,
+				AE7B7455144A167300E115D2 /* OpticWorkbench-Prefix.pch */,
+				AE7B7456144A167300E115D2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AE7B7442144A167300E115D2 /* OpticWorkbench */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AE7B7464144A167300E115D2 /* Build configuration list for PBXNativeTarget "OpticWorkbench" */;
+			buildPhases = (
+				AE7B743F144A167300E115D2 /* Sources */,
+				AE7B7440144A167300E115D2 /* Frameworks */,
+				AE7B7441144A167300E115D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpticWorkbench;
+			productName = OpticWorkbench;
+			productReference = AE7B7443144A167300E115D2 /* OpticWorkbench.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AE7B743A144A167300E115D2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = AE7B743D144A167300E115D2 /* Build configuration list for PBXProject "OpticWorkbench" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AE7B7438144A167300E115D2;
+			productRefGroup = AE7B7444144A167300E115D2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AE7B7442144A167300E115D2 /* OpticWorkbench */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AE7B7441144A167300E115D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE7B7452144A167300E115D2 /* InfoPlist.strings in Resources */,
+				AE7B7458144A167300E115D2 /* Credits.rtf in Resources */,
+				AE7B745E144A167300E115D2 /* Document.xib in Resources */,
+				AE7B7461144A167300E115D2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AE7B743F144A167300E115D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE7B7454144A167300E115D2 /* main.m in Sources */,
+				AE7B745B144A167300E115D2 /* Document.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AE7B7450144A167300E115D2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE7B7451144A167300E115D2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		AE7B7456144A167300E115D2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE7B7457144A167300E115D2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		AE7B745C144A167300E115D2 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE7B745D144A167300E115D2 /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		AE7B745F144A167300E115D2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE7B7460144A167300E115D2 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AE7B7462144A167300E115D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AE7B7463144A167300E115D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AE7B7465144A167300E115D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpticWorkbench/OpticWorkbench-Prefix.pch";
+				INFOPLIST_FILE = "OpticWorkbench/OpticWorkbench-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		AE7B7466144A167300E115D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "OpticWorkbench/OpticWorkbench-Prefix.pch";
+				INFOPLIST_FILE = "OpticWorkbench/OpticWorkbench-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AE7B743D144A167300E115D2 /* Build configuration list for PBXProject "OpticWorkbench" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE7B7462144A167300E115D2 /* Debug */,
+				AE7B7463144A167300E115D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AE7B7464144A167300E115D2 /* Build configuration list for PBXNativeTarget "OpticWorkbench" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE7B7465144A167300E115D2 /* Debug */,
+				AE7B7466144A167300E115D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AE7B743A144A167300E115D2 /* Project object */;
+}
