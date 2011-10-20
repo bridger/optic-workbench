@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE489A78144E1DD40099CEF4 /* BeamSplitter.m */; };
+		AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = AE489A7C144E1F1F0099CEF4 /* Obstacle.m */; };
 		AE7B7448144A167300E115D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B7447144A167300E115D2 /* Cocoa.framework */; };
 		AE7B7452144A167300E115D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7B7450144A167300E115D2 /* InfoPlist.strings */; };
 		AE7B7454144A167300E115D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7453144A167300E115D2 /* main.m */; };
@@ -14,23 +16,54 @@
 		AE7B745B144A167300E115D2 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B745A144A167300E115D2 /* Document.m */; };
 		AE7B745E144A167300E115D2 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE7B745C144A167300E115D2 /* Document.xib */; };
 		AE7B7461144A167300E115D2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE7B745F144A167300E115D2 /* MainMenu.xib */; };
+		AE7B746F144A168E00E115D2 /* OpticRay.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7468144A168E00E115D2 /* OpticRay.m */; };
+		AE7B7470144A168E00E115D2 /* OpticTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B746A144A168E00E115D2 /* OpticTool.m */; };
+		AE7B7471144A168E00E115D2 /* OpticWorkbenchLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B746C144A168E00E115D2 /* OpticWorkbenchLayer.m */; };
+		AE7B7472144A168E00E115D2 /* OpticWorkbenchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B746E144A168E00E115D2 /* OpticWorkbenchView.m */; };
+		AE7B7488144A277800E115D2 /* LightPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7487144A277800E115D2 /* LightPoint.m */; };
+		AE7B748A144A2CBB00E115D2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B7489144A2CBB00E115D2 /* QuartzCore.framework */; };
+		AE7B748D144A33A700E115D2 /* Mirror.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B748C144A33A700E115D2 /* Mirror.m */; };
+		AE7B7490144B489C00E115D2 /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B748F144B489C00E115D2 /* Lens.m */; };
+		AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7492144B77C200E115D2 /* ToolEditor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE489A77144E1DD40099CEF4 /* BeamSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeamSplitter.h; sourceTree = "<group>"; };
+		AE489A78144E1DD40099CEF4 /* BeamSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeamSplitter.m; sourceTree = "<group>"; };
+		AE489A7B144E1F1F0099CEF4 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
+		AE489A7C144E1F1F0099CEF4 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
+		AE489A7E144E296E0099CEF4 /* OpticTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticTools.h; sourceTree = "<group>"; };
 		AE7B7443144A167300E115D2 /* OpticWorkbench.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpticWorkbench.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7B7447144A167300E115D2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		AE7B744A144A167300E115D2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		AE7B744B144A167300E115D2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		AE7B744C144A167300E115D2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AE7B744F144A167300E115D2 /* OpticWorkbench-Info.plist */ = {isa = PBXFileReference; path = "OpticWorkbench-Info.plist"; sourceTree = "<group>"; };
+		AE7B744F144A167300E115D2 /* OpticWorkbench-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OpticWorkbench-Info.plist"; sourceTree = "<group>"; };
 		AE7B7451144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AE7B7453144A167300E115D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		AE7B7455144A167300E115D2 /* OpticWorkbench-Prefix.pch */ = {isa = PBXFileReference; path = "OpticWorkbench-Prefix.pch"; sourceTree = "<group>"; };
+		AE7B7455144A167300E115D2 /* OpticWorkbench-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "OpticWorkbench-Prefix.pch"; sourceTree = "<group>"; };
 		AE7B7457144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		AE7B7459144A167300E115D2 /* Document.h */ = {isa = PBXFileReference; path = Document.h; sourceTree = "<group>"; };
+		AE7B7459144A167300E115D2 /* Document.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		AE7B745A144A167300E115D2 /* Document.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		AE7B745D144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		AE7B7460144A167300E115D2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		AE7B7467144A168E00E115D2 /* OpticRay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticRay.h; sourceTree = "<group>"; };
+		AE7B7468144A168E00E115D2 /* OpticRay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpticRay.m; sourceTree = "<group>"; };
+		AE7B7469144A168E00E115D2 /* OpticTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticTool.h; sourceTree = "<group>"; };
+		AE7B746A144A168E00E115D2 /* OpticTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpticTool.m; sourceTree = "<group>"; };
+		AE7B746B144A168E00E115D2 /* OpticWorkbenchLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticWorkbenchLayer.h; sourceTree = "<group>"; };
+		AE7B746C144A168E00E115D2 /* OpticWorkbenchLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpticWorkbenchLayer.m; sourceTree = "<group>"; };
+		AE7B746D144A168E00E115D2 /* OpticWorkbenchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticWorkbenchView.h; sourceTree = "<group>"; };
+		AE7B746E144A168E00E115D2 /* OpticWorkbenchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpticWorkbenchView.m; sourceTree = "<group>"; };
+		AE7B7486144A277800E115D2 /* LightPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightPoint.h; sourceTree = "<group>"; };
+		AE7B7487144A277800E115D2 /* LightPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightPoint.m; sourceTree = "<group>"; };
+		AE7B7489144A2CBB00E115D2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AE7B748B144A33A700E115D2 /* Mirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mirror.h; sourceTree = "<group>"; };
+		AE7B748C144A33A700E115D2 /* Mirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mirror.m; sourceTree = "<group>"; };
+		AE7B748E144B489C00E115D2 /* Lens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lens.h; sourceTree = "<group>"; };
+		AE7B748F144B489C00E115D2 /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lens.m; sourceTree = "<group>"; };
+		AE7B7491144B77C200E115D2 /* ToolEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolEditor.h; sourceTree = "<group>"; };
+		AE7B7492144B77C200E115D2 /* ToolEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolEditor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE7B748A144A2CBB00E115D2 /* QuartzCore.framework in Frameworks */,
 				AE7B7448144A167300E115D2 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +99,7 @@
 		AE7B7446144A167300E115D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AE7B7489144A2CBB00E115D2 /* QuartzCore.framework */,
 				AE7B7447144A167300E115D2 /* Cocoa.framework */,
 				AE7B7449144A167300E115D2 /* Other Frameworks */,
 			);
@@ -88,6 +123,17 @@
 				AE7B745A144A167300E115D2 /* Document.m */,
 				AE7B745C144A167300E115D2 /* Document.xib */,
 				AE7B745F144A167300E115D2 /* MainMenu.xib */,
+				AE7B746D144A168E00E115D2 /* OpticWorkbenchView.h */,
+				AE7B746E144A168E00E115D2 /* OpticWorkbenchView.m */,
+				AE7B746B144A168E00E115D2 /* OpticWorkbenchLayer.h */,
+				AE7B746C144A168E00E115D2 /* OpticWorkbenchLayer.m */,
+				AE7B7467144A168E00E115D2 /* OpticRay.h */,
+				AE7B7468144A168E00E115D2 /* OpticRay.m */,
+				AE7B7469144A168E00E115D2 /* OpticTool.h */,
+				AE7B746A144A168E00E115D2 /* OpticTool.m */,
+				AE7B7491144B77C200E115D2 /* ToolEditor.h */,
+				AE7B7492144B77C200E115D2 /* ToolEditor.m */,
+				AE7B7485144A275700E115D2 /* Tools */,
 				AE7B744E144A167300E115D2 /* Supporting Files */,
 			);
 			path = OpticWorkbench;
@@ -103,6 +149,24 @@
 				AE7B7456144A167300E115D2 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AE7B7485144A275700E115D2 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				AE489A7E144E296E0099CEF4 /* OpticTools.h */,
+				AE7B7486144A277800E115D2 /* LightPoint.h */,
+				AE7B7487144A277800E115D2 /* LightPoint.m */,
+				AE7B748B144A33A700E115D2 /* Mirror.h */,
+				AE7B748C144A33A700E115D2 /* Mirror.m */,
+				AE489A77144E1DD40099CEF4 /* BeamSplitter.h */,
+				AE489A78144E1DD40099CEF4 /* BeamSplitter.m */,
+				AE489A7B144E1F1F0099CEF4 /* Obstacle.h */,
+				AE489A7C144E1F1F0099CEF4 /* Obstacle.m */,
+				AE7B748E144B489C00E115D2 /* Lens.h */,
+				AE7B748F144B489C00E115D2 /* Lens.m */,
+			);
+			name = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +235,16 @@
 			files = (
 				AE7B7454144A167300E115D2 /* main.m in Sources */,
 				AE7B745B144A167300E115D2 /* Document.m in Sources */,
+				AE7B746F144A168E00E115D2 /* OpticRay.m in Sources */,
+				AE7B7470144A168E00E115D2 /* OpticTool.m in Sources */,
+				AE7B7471144A168E00E115D2 /* OpticWorkbenchLayer.m in Sources */,
+				AE7B7472144A168E00E115D2 /* OpticWorkbenchView.m in Sources */,
+				AE7B7488144A277800E115D2 /* LightPoint.m in Sources */,
+				AE7B748D144A33A700E115D2 /* Mirror.m in Sources */,
+				AE7B7490144B489C00E115D2 /* Lens.m in Sources */,
+				AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */,
+				AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */,
+				AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +372,7 @@
 				AE7B7466144A167300E115D2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
