@@ -8,10 +8,8 @@
 
 #import "OpticTool.h"
 
-@interface Lens : FlatOpticTool {
+@interface Lens : FlatOpticTool <FocuseableOpticTool> {
     CGFloat _focalLength;
 }
-
-@property (nonatomic) CGFloat focalLength;
 
 @end

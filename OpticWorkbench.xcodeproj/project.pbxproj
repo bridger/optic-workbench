@@ -25,6 +25,7 @@
 		AE7B748D144A33A700E115D2 /* Mirror.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B748C144A33A700E115D2 /* Mirror.m */; };
 		AE7B7490144B489C00E115D2 /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B748F144B489C00E115D2 /* Lens.m */; };
 		AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7492144B77C200E115D2 /* ToolEditor.m */; };
+		AEDBC33D14528D9800EEDEF0 /* Beam.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDBC33C14528D9800EEDEF0 /* Beam.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,8 @@
 		AE7B748F144B489C00E115D2 /* Lens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Lens.m; sourceTree = "<group>"; };
 		AE7B7491144B77C200E115D2 /* ToolEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolEditor.h; sourceTree = "<group>"; };
 		AE7B7492144B77C200E115D2 /* ToolEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolEditor.m; sourceTree = "<group>"; };
+		AEDBC33B14528D9800EEDEF0 /* Beam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beam.h; sourceTree = "<group>"; };
+		AEDBC33C14528D9800EEDEF0 /* Beam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beam.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +160,8 @@
 				AE489A7E144E296E0099CEF4 /* OpticTools.h */,
 				AE7B7486144A277800E115D2 /* LightPoint.h */,
 				AE7B7487144A277800E115D2 /* LightPoint.m */,
+				AEDBC33B14528D9800EEDEF0 /* Beam.h */,
+				AEDBC33C14528D9800EEDEF0 /* Beam.m */,
 				AE7B748B144A33A700E115D2 /* Mirror.h */,
 				AE7B748C144A33A700E115D2 /* Mirror.m */,
 				AE489A77144E1DD40099CEF4 /* BeamSplitter.h */,
@@ -245,6 +250,7 @@
 				AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */,
 				AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */,
 				AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */,
+				AEDBC33D14528D9800EEDEF0 /* Beam.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

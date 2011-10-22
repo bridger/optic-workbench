@@ -29,12 +29,23 @@
     _layer = [[OpticWorkbenchLayer alloc] init];
     [self setLayer:_layer];
     [self setWantsLayer:YES];
-    [_layer setBackgroundColor:CGColorCreateGenericRGB(1.0, 1.0, 1.0, 1.0)];
+    [_layer setBackgroundColor:CGColorCreateGenericRGB(0.0, 0.0, 0.0, 1.0)];
+    
+    [self becomeFirstResponder];
+    
+    //Preserve the correct aspect ratio
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self 
+                                                                  attribute:NSLayoutAttributeWidth 
+                                                                  relatedBy:NSLayoutRelationEqual 
+                                                                     toItem:self 
+                                                                  attribute:NSLayoutAttributeHeight 
+                                                                 multiplier:1.0 
+                                                                   constant:0.0];
+    [self addConstraint:constraint];
 }
 
-- (void)drawRect:(NSRect)dirtyRect
-{
-    // Drawing code here.
+- (BOOL)acceptsFirstResponder {
+    return YES;
 }
 
 - (CGPoint)convertWindowPointToWorkbench:(NSPoint)windowPoint {
@@ -53,6 +64,14 @@
 
 - (void)mouseUp:(NSEvent *)theEvent {
     [_layer.toolEditor mouseUpAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
+}
+
+- (void)keyDown:(NSEvent *)theEvent {
+    //[_layer.toolEditor keyUp:theEvent];
+}
+
+- (void)keyUp:(NSEvent *)theEvent {
+    [_layer.toolEditor keyUp:theEvent];
 }
 
 @end

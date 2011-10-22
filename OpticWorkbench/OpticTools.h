@@ -11,3 +11,4 @@
 #import "BeamSplitter.h"
 #import "Obstacle.h"
 #import "Lens.h"
+#import "Beam.h"

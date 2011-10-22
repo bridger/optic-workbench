@@ -8,6 +8,7 @@
 
 #import "OpticTool.h"
 #import "OpticRay.h"
+#import "OpticWorkbenchLayer.h"
 
 @implementation OpticTool
 
@@ -64,7 +65,10 @@
     return [NSSet setWithObjects:@"flatToolOrigin", @"angle", @"length", nil];
 }
 
-//TODO: setGamePosition
++ (NSSet *)keyPathsForValuesAffectingGamePosition {
+    return [NSSet setWithObjects:@"flatToolOrigin", @"angle", @"length", nil];
+}
+
 //TODO: setGameFrame
 
 - (void)setGamePosition:(CGPoint)gamePosition {
@@ -139,6 +143,7 @@
 
 - (CGFloat)toolIntersectionDistanceForRay:(OpticRay *)ray rayIntersectionDistance:(CGFloat)rayDistance {
     //We have two equations for solving this. One divides by cos, the other divides by sin. Choosing the wrong one results in an invalid answer
+    
     if (abs(sin(_angle)) > 0.5) {
         return (sin(ray.angle) * rayDistance + ray.position.y - _flatToolOrigin.y) / sin(_angle);
     } else {

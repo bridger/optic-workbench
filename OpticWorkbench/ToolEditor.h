@@ -14,8 +14,12 @@
     OpticTool *_editPart;
     __weak OpticWorkbenchLayer *_workbench;
     CALayer *_editIndicatorLayer;
+    
     CALayer *_resizeLayerRight;
     CALayer *_resizeLayerLeft;
+    
+    CALayer *_focusLayerRight;
+    CALayer *_focusLayerLeft;
     
     bool _isDragging;
     
@@ -26,7 +30,9 @@
     
     bool _resizes;
     bool _isResizing;
+    
     bool _focuses;
+    bool _isFocusing;
     
     CGPoint _originalCenterPoint; //Where the tool was when we were first clicked
 }
@@ -36,6 +42,7 @@
 - (void)mouseDownAtWorkbenchPoint:(CGPoint)point;
 - (void)mouseDraggedAtWorkbenchPoint:(CGPoint)point;
 - (void)mouseUpAtWorkbenchPoint:(CGPoint)point;
+- (void)keyUp:(NSEvent *)theEvent;
 - (NSArray *)layers;
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx;

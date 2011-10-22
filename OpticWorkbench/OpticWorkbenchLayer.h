@@ -24,6 +24,7 @@
 
 - (void)addOpticTool:(OpticTool *)tool;
 - (void)removeOpticTool:(OpticTool *)tool;
+- (void)opticToolAltered:(OpticTool *)tool;
 
 - (CGRect)gameToPixelTransformRect:(CGRect)rect;
 - (CGPoint)gameToPixelTransformPoint:(CGPoint)point;

@@ -28,6 +28,29 @@
     CGContextStrokePath(ctx);
 }
 
++ (NSSet *)keyPathsForValuesAffectingLeftFocalPoint {
+    return [NSSet setWithObjects:@"flatToolOrigin", @"angle", @"length", @"focalLength", nil];
+}
+
++ (NSSet *)keyPathsForValuesAffectingRightFocalPoint {
+    return [NSSet setWithObjects:@"flatToolOrigin", @"angle", @"length", @"focalLength", nil];
+}
+
+- (void)setFocalLength:(CGFloat)focalLength {
+    _focalLength = focalLength;
+    [self.workbench opticToolAltered:self];
+}
+
+- (CGPoint)leftFocalPoint {
+    CGPoint centerPoint = [self gamePosition];
+    return CGPointMake(centerPoint.x + cos(_angle + M_PI_2) * _focalLength, centerPoint.y + sin(_angle + M_PI_2) * _focalLength);
+}
+
+- (CGPoint)rightFocalPoint {
+    CGPoint centerPoint = [self gamePosition];
+    return CGPointMake(centerPoint.x + cos(_angle - M_PI_2) * _focalLength, centerPoint.y - sin(_angle + M_PI_2) * _focalLength);
+}
+
 
 - (NSArray *)transformRay:(OpticRay *)ray atPoint:(CGPoint)point afterDistance:(CGFloat)intersectionDistance {    
     //We have to increase the intersection distance by just a bit, so that the point is beyond the lens and doesn't immediately intersect with it again
@@ -35,7 +58,21 @@
     
     CGFloat distanceFromCenter = [self toolIntersectionDistanceForRay:ray rayIntersectionDistance:intersectionDistance] - _length / 2;
     
-    CGFloat transformedAngle = ray.angle - distanceFromCenter / _focalLength;
+    //We need to make adjustments if the ray hits the back of the lens
+    CGFloat normal = (_angle - M_PI_2);
+    if (cos(ray.angle - normal) < 0) {
+        normal = (_angle + M_PI_2);
+        distanceFromCenter *= -1;
+    }
+    
+    //Find the angle with respect to the normal
+    CGFloat theta = ray.angle - normal;
+    
+    //Compute the new angle
+    CGFloat transformedAngle = atan((_focalLength * tan(theta) - distanceFromCenter) / _focalLength);
+    
+    //Restore the angle so it isn't with respect to the normal
+    transformedAngle += normal;
     
     return [NSArray arrayWithObject:[OpticRay rayWithPositionPostion:bouncePoint angle:transformedAngle]];
 }

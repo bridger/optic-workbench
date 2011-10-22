@@ -38,8 +38,14 @@
 
 @protocol ResizeableOpticTool <NSObject>
 @property (nonatomic) CGFloat length;
-- (CGPoint)startPoint;
-- (CGPoint)endPoint;
+@property (nonatomic, readonly) CGPoint startPoint;
+@property (nonatomic, readonly) CGPoint endPoint;
+@end
+
+@protocol FocuseableOpticTool <NSObject>
+@property (nonatomic) CGFloat focalLength;
+@property (nonatomic, readonly) CGPoint leftFocalPoint;
+@property (nonatomic, readonly) CGPoint rightFocalPoint;
 @end
 
 

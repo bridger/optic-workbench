@@ -54,7 +54,7 @@
         testLens.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 1, TEMPLATE_SPACING);
         testLens.angle = M_PI_2;
         testLens.length = TEMPLATE_SIZE;
-        testLens.focalLength = 0.5;
+        testLens.focalLength = 0.1;
         testLens.workbench = self;
         [_toolTemplatesLayer addSublayer:testLens];
         
@@ -79,8 +79,15 @@
         testObstacle.workbench = self;
         [_toolTemplatesLayer addSublayer:testObstacle];
         
+        Beam *testBeam = [[[Beam alloc] init] autorelease];
+        testBeam.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 5, TEMPLATE_SPACING);
+        testBeam.angle = M_PI_2;
+        testBeam.length = TEMPLATE_SIZE;
+        testBeam.workbench = self;
+        [_toolTemplatesLayer addSublayer:testBeam];
+        
         LightPoint *testPoint = [[[LightPoint alloc] init] autorelease];
-        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 4 + LIGHT_POINT_SIZE/2, 
+        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 6 - LIGHT_POINT_SIZE/2, 
                                          TEMPLATE_SPACING + TEMPLATE_SIZE / 2 - LIGHT_POINT_SIZE / 2, 
                                          LIGHT_POINT_SIZE, 
                                          LIGHT_POINT_SIZE);
@@ -169,8 +176,12 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     if ([keyPath isEqualToString:@"gameFrame"]) {
         [self layoutOpticTool:(OpticTool *)object];
         
-        [_rayLayer setNeedsDisplay];
+        [self opticToolAltered:(OpticTool *)object];
     }
+}
+
+- (void)opticToolAltered:(OpticTool *)tool {
+    [_rayLayer setNeedsDisplay];
 }
 
 - (void)layoutOpticTool:(OpticTool *)tool {
@@ -186,8 +197,8 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
         CGContextClearRect(ctx, self.bounds);
         
         CGContextSetLineWidth(ctx, 2.0);
-        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(1.0, 0.0, 0.0, 0.9));
-        CGContextSetLineCap(ctx, kCGLineCapRound);
+        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0));
+        //CGContextSetLineCap(ctx, kCGLineCapRound);
         
         NSMutableSet *liveRays = [NSMutableSet set];
         for (OpticTool *tool in _tools) {
