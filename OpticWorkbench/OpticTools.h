@@ -12,3 +12,4 @@
 #import "Obstacle.h"
 #import "Lens.h"
 #import "Beam.h"
+#import "ParabolicMirror.h"

@@ -234,7 +234,7 @@
             CGFloat newEditorAngle = atan2(point.x - _editIndicatorLayer.position.x, point.y - _editIndicatorLayer.position.y);
             CGFloat angleDifference = newEditorAngle - _editorStartingAngle;
             CGFloat newToolAngle = _toolStartingAngle - angleDifference;
-            
+                        
             [(OpticTool<RotatableOpticTool> *)_editPart setAngle:newToolAngle];
             _editPart.gamePosition = _originalCenterPoint;
             

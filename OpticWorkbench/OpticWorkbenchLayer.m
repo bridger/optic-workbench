@@ -79,15 +79,23 @@
         testObstacle.workbench = self;
         [_toolTemplatesLayer addSublayer:testObstacle];
         
+        
+        ParabolicMirror *testParabola = [[[ParabolicMirror alloc] init] autorelease];
+        testParabola.focalLength = 0.04;
+        testParabola.length = 0.1;
+        testParabola.gamePosition = CGPointMake(TEMPLATE_SPACING * 5, TEMPLATE_SPACING);
+        testParabola.workbench = self;
+        [_toolTemplatesLayer addSublayer:testParabola];
+        
         Beam *testBeam = [[[Beam alloc] init] autorelease];
-        testBeam.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 5, TEMPLATE_SPACING);
+        testBeam.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 6, TEMPLATE_SPACING);
         testBeam.angle = M_PI_2;
         testBeam.length = TEMPLATE_SIZE;
         testBeam.workbench = self;
         [_toolTemplatesLayer addSublayer:testBeam];
         
         LightPoint *testPoint = [[[LightPoint alloc] init] autorelease];
-        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 6 - LIGHT_POINT_SIZE/2, 
+        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 7 - LIGHT_POINT_SIZE/2, 
                                          TEMPLATE_SPACING + TEMPLATE_SIZE / 2 - LIGHT_POINT_SIZE / 2, 
                                          LIGHT_POINT_SIZE, 
                                          LIGHT_POINT_SIZE);
@@ -188,7 +196,9 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     CGRect pixelFrame = gameToPixelTransformRect(tool.gameFrame, self.bounds);
     CGFloat inset = [tool drawingPixelInset];
     pixelFrame = CGRectInset(pixelFrame, inset, inset);
-    tool.frame = pixelFrame;
+    pixelFrame.origin = CGPointZero;
+    tool.bounds = pixelFrame;
+    tool.position = gameToPixelTransformPoint(tool.gamePosition, self.bounds);
 }
 
 

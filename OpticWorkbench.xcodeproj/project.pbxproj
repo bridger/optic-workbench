@@ -26,6 +26,8 @@
 		AE7B7490144B489C00E115D2 /* Lens.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B748F144B489C00E115D2 /* Lens.m */; };
 		AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7492144B77C200E115D2 /* ToolEditor.m */; };
 		AEDBC33D14528D9800EEDEF0 /* Beam.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDBC33C14528D9800EEDEF0 /* Beam.m */; };
+		AEE3E29D145330BE0074DBEF /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = AEE3E29C145330BE0074DBEF /* ToDo.txt */; };
+		AEE3E2A1145332CC0074DBEF /* ParabolicMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = AEE3E2A0145332CC0074DBEF /* ParabolicMirror.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,9 @@
 		AE7B7492144B77C200E115D2 /* ToolEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolEditor.m; sourceTree = "<group>"; };
 		AEDBC33B14528D9800EEDEF0 /* Beam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Beam.h; sourceTree = "<group>"; };
 		AEDBC33C14528D9800EEDEF0 /* Beam.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Beam.m; sourceTree = "<group>"; };
+		AEE3E29C145330BE0074DBEF /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		AEE3E29F145332CC0074DBEF /* ParabolicMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParabolicMirror.h; sourceTree = "<group>"; };
+		AEE3E2A0145332CC0074DBEF /* ParabolicMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParabolicMirror.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +155,7 @@
 				AE7B7453144A167300E115D2 /* main.m */,
 				AE7B7455144A167300E115D2 /* OpticWorkbench-Prefix.pch */,
 				AE7B7456144A167300E115D2 /* Credits.rtf */,
+				AEE3E29C145330BE0074DBEF /* ToDo.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -170,6 +176,8 @@
 				AE489A7C144E1F1F0099CEF4 /* Obstacle.m */,
 				AE7B748E144B489C00E115D2 /* Lens.h */,
 				AE7B748F144B489C00E115D2 /* Lens.m */,
+				AEE3E29F145332CC0074DBEF /* ParabolicMirror.h */,
+				AEE3E2A0145332CC0074DBEF /* ParabolicMirror.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -228,6 +236,7 @@
 				AE7B7458144A167300E115D2 /* Credits.rtf in Resources */,
 				AE7B745E144A167300E115D2 /* Document.xib in Resources */,
 				AE7B7461144A167300E115D2 /* MainMenu.xib in Resources */,
+				AEE3E29D145330BE0074DBEF /* ToDo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +260,7 @@
 				AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */,
 				AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */,
 				AEDBC33D14528D9800EEDEF0 /* Beam.m in Sources */,
+				AEE3E2A1145332CC0074DBEF /* ParabolicMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

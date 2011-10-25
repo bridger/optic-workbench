@@ -153,7 +153,7 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     FlatOpticTool *copy = [super copyWithZone:zone];
-    copy.length = _length;
+    copy.length = self.length;
     copy.flatToolOrigin = _flatToolOrigin;
     copy.angle = _angle;
     return copy;
