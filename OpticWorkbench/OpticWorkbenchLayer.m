@@ -83,7 +83,8 @@
         ParabolicMirror *testParabola = [[[ParabolicMirror alloc] init] autorelease];
         testParabola.focalLength = 0.04;
         testParabola.length = 0.1;
-        testParabola.gamePosition = CGPointMake(TEMPLATE_SPACING * 5, TEMPLATE_SPACING);
+        testParabola.angle = -M_PI_2;
+        testParabola.gamePosition = CGPointMake(TEMPLATE_SPACING * 5 - 0.02, TEMPLATE_SPACING + 0.1);
         testParabola.workbench = self;
         [_toolTemplatesLayer addSublayer:testParabola];
         
@@ -207,8 +208,6 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
         CGContextClearRect(ctx, self.bounds);
         
         CGContextSetLineWidth(ctx, 2.0);
-        CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0));
-        //CGContextSetLineCap(ctx, kCGLineCapRound);
         
         NSMutableSet *liveRays = [NSMutableSet set];
         for (OpticTool *tool in _tools) {
@@ -253,8 +252,9 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
             CGContextMoveToPoint(ctx, rayStartPoint.x, rayStartPoint.y);
             CGContextAddLineToPoint(ctx, rayEndPoint.x, rayEndPoint.y);
             
+            CGContextSetStrokeColorWithColor(ctx, nextRay.color);
+            CGContextStrokePath(ctx);
         }
-        CGContextStrokePath(ctx);
         
     } else {
         [super drawLayer:layer inContext:ctx];

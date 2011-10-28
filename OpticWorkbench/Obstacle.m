@@ -22,7 +22,9 @@
     CGContextAddLineToPoint(ctx, endPoint.x - self.frame.origin.x, endPoint.y - self.frame.origin.y);
     
     CGContextSetLineWidth(ctx, 5.0);
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericGray(0.0, 1.0));
+    CGColorRef strokeColor = CGColorCreateGenericGray(0.0, 1.0);
+    CGContextSetStrokeColorWithColor(ctx, strokeColor);
+    CGColorRelease(strokeColor);     
     CGContextStrokePath(ctx);
 }
 

@@ -11,13 +11,16 @@
 @interface OpticRay : NSObject {
     CGPoint _position;
     CGFloat _angle;
+    CGColorRef _color;
 }
 
-- (id)initWithPostion:(CGPoint)position angle:(CGFloat)angle;
-+ (id)rayWithPositionPostion:(CGPoint)position angle:(CGFloat)angle;
+- (id)initWithPostion:(CGPoint)position angle:(CGFloat)angle color:(CGColorRef)color;
+- (id)copyWithPosition:(CGPoint)position angle:(CGFloat)angle intensity:(CGFloat)intensity;
++ (id)rayWithPositionPostion:(CGPoint)position angle:(CGFloat)angle color:(CGColorRef)color;
 
 @property (nonatomic, readonly) CGPoint position;
 @property (nonatomic, readonly) CGFloat angle;
+@property (nonatomic, readonly) CGColorRef color;
 
 @end
 

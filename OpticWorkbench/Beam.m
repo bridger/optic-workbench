@@ -15,6 +15,8 @@
 - (NSArray *)startingRays {
     NSMutableArray *array = [NSMutableArray array];
     
+    CGColorRef color = CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0);
+    
     CGPoint offset = CGPointMake(cos(_angle - M_PI_2) * 0.0001, sin(_angle - M_PI_2) * 0.0001);
     for (CGFloat distance = 0; distance < _length; distance += 0.02) {
         CGPoint position = CGPointMake(_flatToolOrigin.x + cos(_angle) * distance,
@@ -22,8 +24,10 @@
         position.x += offset.x;
         position.y += offset.y;
         
-        [array addObject:[OpticRay rayWithPositionPostion:position angle:_angle - M_PI_2]];
+        [array addObject:[OpticRay rayWithPositionPostion:position angle:_angle - M_PI_2 color:color]];
     }
+    
+    CGColorRelease(color);
     
     return array;
 }
@@ -39,7 +43,9 @@
     CGContextAddLineToPoint(ctx, endPoint.x - self.frame.origin.x, endPoint.y - self.frame.origin.y);
     
     CGContextSetLineWidth(ctx, 5.0);
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(1.0, 1.0, 0.0, 1.0));
+    CGColorRef strokeColor = CGColorCreateGenericRGB(1.0, 1.0, 0.0, 1.0);
+    CGContextSetStrokeColorWithColor(ctx, strokeColor);
+    CGColorRelease(strokeColor);
     CGContextStrokePath(ctx);
 }
 

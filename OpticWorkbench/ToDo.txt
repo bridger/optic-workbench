@@ -1,8 +1,8 @@
+- Better hitTest for parts
 - Draw the lens with curved surface
-- Have a parabolic mirror
+√ Have a parabolic mirror
 - Lenslet array
 - Different colors for the rays
-- Better hitTest for parts
 - Profile for performance (turn of anti-aliasing?)
-- Drag offset
-- If an off-screen ray would intersect the rectangle again, draw it
+√ Drag offset
+√ If an off-screen ray would intersect the rectangle again, draw it

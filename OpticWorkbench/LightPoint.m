@@ -17,9 +17,13 @@
     NSMutableArray *array = [NSMutableArray array];
     CGPoint startPoint = self.gamePosition;
     
+    CGColorRef color = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
+    
     for (CGFloat currentAngle = 0; currentAngle < 2 * M_PI; currentAngle += M_PI/32) {
-        [array addObject:[OpticRay rayWithPositionPostion:startPoint angle:currentAngle + _angle]];
+        [array addObject:[OpticRay rayWithPositionPostion:startPoint angle:currentAngle + _angle  color:color]];
     }
+    
+    CGColorRelease(color);
     
     return array;
 }
@@ -38,7 +42,9 @@
                     self.bounds.size.height / 2 + self.bounds.origin.y, 
                     radius - 1.0, 0, M_PI * 2, 1);
     
-    CGContextSetFillColorWithColor(ctx, CGColorCreateGenericRGB(1.0, 1.0, 0.0, 1.0));
+    CGColorRef fillColor = CGColorCreateGenericRGB(1.0, 1.0, 0.0, 1.0);
+    CGContextSetFillColorWithColor(ctx, fillColor);
+    CGColorRelease(fillColor);
     
     CGContextFillPath(ctx);
 }

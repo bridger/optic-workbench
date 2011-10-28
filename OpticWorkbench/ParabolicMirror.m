@@ -118,8 +118,8 @@
     //We move the point by BUFFER_DISTANCE away after it has bounced, so it can get clear of the mirror
 #define BUFFER_DISTANCE 0.0000001
     CGPoint bouncePoint = CGPointMake(point.x + cos(transformedAngle) * BUFFER_DISTANCE, point.y + sin(transformedAngle) * BUFFER_DISTANCE);
-    
-    return [NSArray arrayWithObject:[OpticRay rayWithPositionPostion:bouncePoint angle:transformedAngle]];
+        
+    return [NSArray arrayWithObject:[[ray copyWithPosition:bouncePoint angle:transformedAngle intensity:1.0] autorelease]];
 }
 
 - (CGFloat)rayIntersectionDistance:(OpticRay *)ray {
@@ -186,8 +186,10 @@
         CGContextAddLineToPoint(ctx, x, y);
     }
     
-    CGContextSetLineWidth(ctx, 3.0);
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericGray(0.5, 0.5));
+    CGContextSetLineWidth(ctx, 5.0);
+    CGColorRef strokeColor = CGColorCreateGenericGray(0.5, 1.0);
+    CGContextSetStrokeColorWithColor(ctx, strokeColor);
+    CGColorRelease(strokeColor);
     CGContextStrokePath(ctx);
 }
 
@@ -199,6 +201,7 @@
     ParabolicMirror *copy = [super copyWithZone:zone];
     copy.focalLength = _focalLength;
     copy.length = self.length;
+    copy.angle = _angle;
     return copy;
 }
 

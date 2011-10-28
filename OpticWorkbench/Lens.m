@@ -24,7 +24,9 @@
     CGContextAddLineToPoint(ctx, endPoint.x - self.frame.origin.x, endPoint.y - self.frame.origin.y);
     
     CGContextSetLineWidth(ctx, 7.0);
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericRGB(0.0, 0.0, 1.0, 0.5));
+    CGColorRef strokeColor = CGColorCreateGenericRGB(0.0, 0.0, 1.0, 0.5);
+    CGContextSetStrokeColorWithColor(ctx, strokeColor);
+    CGColorRelease(strokeColor); 
     CGContextStrokePath(ctx);
 }
 
@@ -74,7 +76,7 @@
     //Restore the angle so it isn't with respect to the normal
     transformedAngle += normal;
     
-    return [NSArray arrayWithObject:[OpticRay rayWithPositionPostion:bouncePoint angle:transformedAngle]];
+    return [NSArray arrayWithObject:[[ray copyWithPosition:bouncePoint angle:transformedAngle intensity:1.0] autorelease]];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

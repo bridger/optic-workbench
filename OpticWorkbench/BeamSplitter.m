@@ -22,7 +22,9 @@
     CGContextAddLineToPoint(ctx, endPoint.x - self.frame.origin.x, endPoint.y - self.frame.origin.y);
     
     CGContextSetLineWidth(ctx, 5.0);
-    CGContextSetStrokeColorWithColor(ctx, CGColorCreateGenericGray(0.5, 0.5));
+    CGColorRef strokeColor = CGColorCreateGenericGray(0.5, 0.5);
+    CGContextSetStrokeColorWithColor(ctx, strokeColor);
+    CGColorRelease(strokeColor);
     CGContextStrokePath(ctx);
 }
 
@@ -33,8 +35,11 @@
     
     CGFloat transformedAngle = 2 * _angle - ray.angle;
     
-    return [NSArray arrayWithObjects:[OpticRay rayWithPositionPostion:bouncePointFront angle:transformedAngle],
-            [OpticRay rayWithPositionPostion:bouncePointBehind angle:ray.angle], nil];
+    return [NSArray arrayWithObjects:
+            [[ray copyWithPosition:bouncePointFront angle:transformedAngle intensity:0.5] autorelease],
+            [[ray copyWithPosition:bouncePointBehind angle:ray.angle intensity:0.5] autorelease],
+            nil];
+
 }
 
 @end

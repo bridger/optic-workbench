@@ -33,26 +33,36 @@
         [_editIndicatorLayer setNeedsDisplayOnBoundsChange:YES];
         [_editIndicatorLayer setNeedsDisplay];
         
+        
+        CGColorRef background;
         _resizeLayerRight = [[CALayer alloc] init];
         _resizeLayerRight.frame = CGRectMake(0, 0, 10, 10);
         _resizeLayerRight.hidden = YES;
-        _resizeLayerRight.backgroundColor = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
+        background = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
+        _resizeLayerRight.backgroundColor = background;
+        CGColorRelease(background);
         
         _resizeLayerLeft = [[CALayer alloc] init];
         _resizeLayerLeft.frame = CGRectMake(0, 0, 10, 10);
         _resizeLayerLeft.hidden = YES;
-        _resizeLayerLeft.backgroundColor = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
+        background = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
+        _resizeLayerLeft.backgroundColor = background;
+        CGColorRelease(background);
         
         
         _focusLayerRight = [[CALayer alloc] init];
         _focusLayerRight.frame = CGRectMake(0, 0, 10, 10);
         _focusLayerRight.hidden = YES;
-        _focusLayerRight.backgroundColor = CGColorCreateGenericRGB(0.0, 0.0, 1.0, 1.0);
+        background = CGColorCreateGenericRGB(0.0, 0.0, 1.0, 1.0);
+        _focusLayerRight.backgroundColor = background;
+        CGColorRelease(background);
         
         _focusLayerLeft = [[CALayer alloc] init];
         _focusLayerLeft.frame = CGRectMake(0, 0, 10, 10);
         _focusLayerLeft.hidden = YES;
-        _focusLayerLeft.backgroundColor = CGColorCreateGenericRGB(0.0, 0.0, 1.0, 1.0);
+        background = CGColorCreateGenericRGB(0.0, 0.0, 1.0, 1.0);
+        _focusLayerLeft.backgroundColor = background;
+        CGColorRelease(background);
     }
     return self;
 }
@@ -212,16 +222,26 @@
             CALayer *hitTemplate = [_workbench.toolTemplatesLayer hitTest:point];
             if ([hitTemplate isKindOfClass:[OpticTool class]]) {
                 OpticTool *copy = [(OpticTool *)hitTemplate copy];
+                copy.gamePosition = [(OpticTool *)hitTemplate gamePosition];
                 [self.workbench addOpticTool:copy];
                 
                 self.editPart = copy;
                 _isDragging = true;
-                _originalCenterPoint = _editPart.gamePosition;
+                _originalCenterPoint = copy.gamePosition;
+                [copy release];
             } else {
                 self.editPart = NULL;
             }
         }
     }
+    
+    if (_isDragging) {
+        CGPoint clickCenter = [_workbench pixelToGameTransformPoint:point];
+        
+        _originalCenterPoint.x -= clickCenter.x;
+        _originalCenterPoint.y -= clickCenter.y;
+    }
+    
 }
 
 - (void)mouseDraggedAtWorkbenchPoint:(CGPoint)point {
@@ -241,6 +261,8 @@
         } else if (_isDragging) {
             //It is just a drag
             CGPoint newGamePoint = [_workbench pixelToGameTransformPoint:point];
+            newGamePoint.x += _originalCenterPoint.x;
+            newGamePoint.y += _originalCenterPoint.y;
 
             
             _editPart.gamePosition = newGamePoint;
