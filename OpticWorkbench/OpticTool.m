@@ -54,6 +54,11 @@
     return 0.0;
 }
 
+- (void)traceDidStart {
+}
+- (void)traceDidEnd {
+}
+
 @end
 
 

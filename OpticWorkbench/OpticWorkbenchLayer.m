@@ -7,9 +7,11 @@
 //
 
 #import "OpticWorkbenchLayer.h"
+#import "OpticWorkbenchView.h"
 #import "OpticRay.h"
 #import "OpticTool.h"
 #import "ToolEditor.h"
+#import "LightFieldViewController.h"
 
 #import "OpticTools.h"
 
@@ -19,12 +21,14 @@
 
 @implementation OpticWorkbenchLayer
 
-@synthesize toolEditor = _toolEditor, toolsLayer = _toolsLayer, toolTemplatesLayer = _toolTemplatesLayer;
+@synthesize toolEditor = _toolEditor, toolsLayer = _toolsLayer, toolTemplatesLayer = _toolTemplatesLayer, view = _view;
 
 - (id)init {
     self = [super init];
     if (self) {
         _tools = [[NSMutableSet alloc] init];
+        
+        _lightFieldInspectors = [[NSMapTable alloc] initWithKeyOptions:NSMapTableStrongMemory valueOptions:NSMapTableStrongMemory capacity:0];
         
         _rayLayer = [[CALayer alloc] init];
         [_rayLayer setFrame:self.bounds];
@@ -72,31 +76,37 @@
         testSplitter.workbench = self;
         [_toolTemplatesLayer addSublayer:testSplitter];
         
-        Obstacle *testObstacle = [[[Obstacle alloc] init] autorelease];
-        testObstacle.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 4, TEMPLATE_SPACING);
-        testObstacle.angle = M_PI_2;
-        testObstacle.length = TEMPLATE_SIZE;
-        testObstacle.workbench = self;
-        [_toolTemplatesLayer addSublayer:testObstacle];
+        Sensor *testSensor = [[[Sensor alloc] init] autorelease];
+        testSensor.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 4, TEMPLATE_SPACING);
+        testSensor.angle = M_PI_2;
+        testSensor.length = TEMPLATE_SIZE;
+        testSensor.workbench = self;
+        [_toolTemplatesLayer addSublayer:testSensor];
         
+        DiffractingInterface *testInterface = [[[DiffractingInterface alloc] init] autorelease];
+        testInterface.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 5, TEMPLATE_SPACING);
+        testInterface.angle = M_PI_2;
+        testInterface.length = TEMPLATE_SIZE;
+        testInterface.workbench = self;
+        [_toolTemplatesLayer addSublayer:testInterface];
         
         ParabolicMirror *testParabola = [[[ParabolicMirror alloc] init] autorelease];
         testParabola.focalLength = 0.04;
         testParabola.length = 0.1;
         testParabola.angle = -M_PI_2;
-        testParabola.gamePosition = CGPointMake(TEMPLATE_SPACING * 5 - 0.02, TEMPLATE_SPACING + 0.1);
+        testParabola.gamePosition = CGPointMake(TEMPLATE_SPACING * 6 - 0.02, TEMPLATE_SPACING + 0.1);
         testParabola.workbench = self;
         [_toolTemplatesLayer addSublayer:testParabola];
         
         Beam *testBeam = [[[Beam alloc] init] autorelease];
-        testBeam.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 6, TEMPLATE_SPACING);
+        testBeam.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 7, TEMPLATE_SPACING);
         testBeam.angle = M_PI_2;
         testBeam.length = TEMPLATE_SIZE;
         testBeam.workbench = self;
         [_toolTemplatesLayer addSublayer:testBeam];
         
         LightPoint *testPoint = [[[LightPoint alloc] init] autorelease];
-        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 7 - LIGHT_POINT_SIZE/2, 
+        testPoint.gameFrame = CGRectMake(TEMPLATE_SPACING * 8 - LIGHT_POINT_SIZE/2, 
                                          TEMPLATE_SPACING + TEMPLATE_SIZE / 2 - LIGHT_POINT_SIZE / 2, 
                                          LIGHT_POINT_SIZE, 
                                          LIGHT_POINT_SIZE);
@@ -158,6 +168,7 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     for (OpticTool *tool in [_toolTemplatesLayer sublayers]) {
         [self layoutOpticTool:tool];
     }
+    
     [CATransaction commit];
 }
 
@@ -172,6 +183,12 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
 }
 
 - (void)removeOpticTool:(OpticTool *)tool {
+    NSPopover *popover = [_lightFieldInspectors objectForKey:tool];
+    if (popover) {
+        [popover close];
+        [_lightFieldInspectors removeObjectForKey:tool];
+    }
+    
     [_tools removeObject:tool];
     tool.workbench = nil;
     
@@ -179,6 +196,26 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     [tool removeObserver:self forKeyPath:@"gameFrame"];
     
     [_rayLayer setNeedsDisplay];
+}
+
+- (void)showLightFieldInspector:(OpticTool <CapturingOpticTool> *)sensor {
+    NSPopover *popover = [_lightFieldInspectors objectForKey:sensor];
+    if (!popover) {
+        LightFieldViewController *viewController = [[LightFieldViewController alloc] initWithSensor:sensor];
+        
+        popover = [[NSPopover alloc] init];
+        popover.contentViewController = viewController;
+        popover.appearance = NSPopoverAppearanceHUD;
+        
+        [_lightFieldInspectors setObject:popover forKey:sensor];
+        [popover autorelease];
+    }
+    
+    if ([popover isShown]) {
+        [popover close];
+    } else {
+        [popover showRelativeToRect:sensor.frame ofView:self.view preferredEdge:NSMinXEdge];
+    }
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -200,6 +237,12 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     pixelFrame.origin = CGPointZero;
     tool.bounds = pixelFrame;
     tool.position = gameToPixelTransformPoint(tool.gamePosition, self.bounds);
+    
+    //Layout the popover, if it has one
+    NSPopover *popover = [_lightFieldInspectors objectForKey:tool];
+    if ([popover isShown]) {
+        [popover showRelativeToRect:tool.frame ofView:self.view preferredEdge:NSMinXEdge];
+    }
 }
 
 
@@ -211,6 +254,8 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
         
         NSMutableSet *liveRays = [NSMutableSet set];
         for (OpticTool *tool in _tools) {
+            [tool traceDidStart];
+            
             [liveRays addObjectsFromArray:[tool startingRays]];
         }
         
@@ -254,6 +299,10 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
             
             CGContextSetStrokeColorWithColor(ctx, nextRay.color);
             CGContextStrokePath(ctx);
+        }
+        
+        for (OpticTool *tool in _tools) {
+            [tool traceDidEnd];
         }
         
     } else {

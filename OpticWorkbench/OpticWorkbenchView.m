@@ -29,6 +29,7 @@
     _layer = [[OpticWorkbenchLayer alloc] init];
     [self setLayer:_layer];
     [self setWantsLayer:YES];
+    _layer.view = self;
     
     CGColorRef background = CGColorCreateGenericGray(0.1, 1.0);
     [_layer setBackgroundColor:background];

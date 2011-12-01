@@ -8,29 +8,48 @@
 
 #import "LightPoint.h"
 #import "OpticRay.h"
+#import "OpticWorkbenchLayer.h"
 
 @implementation LightPoint
 
-@synthesize angle = _angle;
+@synthesize angle = _angle, color = _color;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self randomizeColor];
+    }
+    return self;
+}
 
 - (NSArray *)startingRays {
     NSMutableArray *array = [NSMutableArray array];
     CGPoint startPoint = self.gamePosition;
-    
-    CGColorRef color = CGColorCreateGenericRGB(0.0, 1.0, 0.0, 1.0);
-    
-    for (CGFloat currentAngle = 0; currentAngle < 2 * M_PI; currentAngle += M_PI/32) {
-        [array addObject:[OpticRay rayWithPositionPostion:startPoint angle:currentAngle + _angle  color:color]];
+        
+    for (CGFloat currentAngle = 0; currentAngle < 2 * M_PI; currentAngle += M_PI/32 + 0.00001) {
+        [array addObject:[OpticRay rayWithPositionPostion:startPoint angle:currentAngle + _angle  color:_color]];
     }
     
-    CGColorRelease(color);
-    
     return array;
+}
+
+- (void)setColor:(CGColorRef)color {
+    CGColorRef temp = _color;
+    _color = CGColorRetain(color);
+    CGColorRelease(temp);
+    [self.workbench opticToolAltered:self];
+}
+
+- (void)randomizeColor {
+    CGColorRef color = createRandomColor();
+    self.color = color;
+    CGColorRelease(color);
 }
 
 - (id)copyWithZone:(NSZone *)zone {
     LightPoint *copy = [super copyWithZone:zone];
     copy.angle = _angle;
+    copy.color = _color;
     return copy;
 }
 

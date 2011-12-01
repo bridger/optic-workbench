@@ -28,6 +28,9 @@
 
 - (CGFloat)drawingPixelInset; //A buffer of pixels (not game coordinates) to add to the frame for drawing
 
+- (void)traceDidStart;
+- (void)traceDidEnd;
+
 @end
 
 
@@ -46,6 +49,16 @@
 @property (nonatomic) CGFloat focalLength;
 @property (nonatomic, readonly) CGPoint leftFocalPoint;
 @property (nonatomic, readonly) CGPoint rightFocalPoint;
+@end
+
+@protocol ColorableOpticTool <NSObject>
+@property (nonatomic, assign) CGColorRef color;
+- (void)randomizeColor;
+@end
+
+
+@protocol CapturingOpticTool <NSObject>
+@property (nonatomic, copy, readonly) NSArray *capturedRays;
 @end
 
 

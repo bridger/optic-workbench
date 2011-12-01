@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE472B781486EB3B00B118D5 /* LightFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AE472B761486EB3B00B118D5 /* LightFieldViewController.m */; };
+		AE472B791486EB3B00B118D5 /* LightFieldViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE472B771486EB3B00B118D5 /* LightFieldViewController.xib */; };
+		AE472B7C1486EDFF00B118D5 /* LightFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = AE472B7B1486EDFF00B118D5 /* LightFieldView.m */; };
+		AE472B7F1487EB8000B118D5 /* DiffractingInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = AE472B7E1487EB8000B118D5 /* DiffractingInterface.m */; };
 		AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */ = {isa = PBXBuildFile; fileRef = AE489A78144E1DD40099CEF4 /* BeamSplitter.m */; };
-		AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */ = {isa = PBXBuildFile; fileRef = AE489A7C144E1F1F0099CEF4 /* Obstacle.m */; };
+		AE489A7D144E1F1F0099CEF4 /* Sensor.m in Sources */ = {isa = PBXBuildFile; fileRef = AE489A7C144E1F1F0099CEF4 /* Sensor.m */; };
 		AE7B7448144A167300E115D2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7B7447144A167300E115D2 /* Cocoa.framework */; };
 		AE7B7452144A167300E115D2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE7B7450144A167300E115D2 /* InfoPlist.strings */; };
 		AE7B7454144A167300E115D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7B7453144A167300E115D2 /* main.m */; };
@@ -31,10 +35,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE472B751486EB3B00B118D5 /* LightFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightFieldViewController.h; sourceTree = "<group>"; };
+		AE472B761486EB3B00B118D5 /* LightFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightFieldViewController.m; sourceTree = "<group>"; };
+		AE472B771486EB3B00B118D5 /* LightFieldViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LightFieldViewController.xib; sourceTree = "<group>"; };
+		AE472B7A1486EDFF00B118D5 /* LightFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightFieldView.h; sourceTree = "<group>"; };
+		AE472B7B1486EDFF00B118D5 /* LightFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightFieldView.m; sourceTree = "<group>"; };
+		AE472B7D1487EB8000B118D5 /* DiffractingInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiffractingInterface.h; sourceTree = "<group>"; };
+		AE472B7E1487EB8000B118D5 /* DiffractingInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiffractingInterface.m; sourceTree = "<group>"; };
 		AE489A77144E1DD40099CEF4 /* BeamSplitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeamSplitter.h; sourceTree = "<group>"; };
 		AE489A78144E1DD40099CEF4 /* BeamSplitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeamSplitter.m; sourceTree = "<group>"; };
-		AE489A7B144E1F1F0099CEF4 /* Obstacle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Obstacle.h; sourceTree = "<group>"; };
-		AE489A7C144E1F1F0099CEF4 /* Obstacle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Obstacle.m; sourceTree = "<group>"; };
+		AE489A7B144E1F1F0099CEF4 /* Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
+		AE489A7C144E1F1F0099CEF4 /* Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensor.m; sourceTree = "<group>"; };
 		AE489A7E144E296E0099CEF4 /* OpticTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpticTools.h; sourceTree = "<group>"; };
 		AE7B7443144A167300E115D2 /* OpticWorkbench.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpticWorkbench.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE7B7447144A167300E115D2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -87,6 +98,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE472B731486E93500B118D5 /* Inspector */ = {
+			isa = PBXGroup;
+			children = (
+				AE472B751486EB3B00B118D5 /* LightFieldViewController.h */,
+				AE472B761486EB3B00B118D5 /* LightFieldViewController.m */,
+				AE472B771486EB3B00B118D5 /* LightFieldViewController.xib */,
+				AE472B7A1486EDFF00B118D5 /* LightFieldView.h */,
+				AE472B7B1486EDFF00B118D5 /* LightFieldView.m */,
+			);
+			name = Inspector;
+			sourceTree = "<group>";
+		};
 		AE7B7438144A167300E115D2 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +164,7 @@
 				AE7B746A144A168E00E115D2 /* OpticTool.m */,
 				AE7B7491144B77C200E115D2 /* ToolEditor.h */,
 				AE7B7492144B77C200E115D2 /* ToolEditor.m */,
+				AE472B731486E93500B118D5 /* Inspector */,
 				AE7B7485144A275700E115D2 /* Tools */,
 				AE7B744E144A167300E115D2 /* Supporting Files */,
 			);
@@ -172,12 +196,14 @@
 				AE7B748C144A33A700E115D2 /* Mirror.m */,
 				AE489A77144E1DD40099CEF4 /* BeamSplitter.h */,
 				AE489A78144E1DD40099CEF4 /* BeamSplitter.m */,
-				AE489A7B144E1F1F0099CEF4 /* Obstacle.h */,
-				AE489A7C144E1F1F0099CEF4 /* Obstacle.m */,
+				AE489A7B144E1F1F0099CEF4 /* Sensor.h */,
+				AE489A7C144E1F1F0099CEF4 /* Sensor.m */,
 				AE7B748E144B489C00E115D2 /* Lens.h */,
 				AE7B748F144B489C00E115D2 /* Lens.m */,
 				AEE3E29F145332CC0074DBEF /* ParabolicMirror.h */,
 				AEE3E2A0145332CC0074DBEF /* ParabolicMirror.m */,
+				AE472B7D1487EB8000B118D5 /* DiffractingInterface.h */,
+				AE472B7E1487EB8000B118D5 /* DiffractingInterface.m */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -237,6 +263,7 @@
 				AE7B745E144A167300E115D2 /* Document.xib in Resources */,
 				AE7B7461144A167300E115D2 /* MainMenu.xib in Resources */,
 				AEE3E29D145330BE0074DBEF /* ToDo.txt in Resources */,
+				AE472B791486EB3B00B118D5 /* LightFieldViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,9 +285,12 @@
 				AE7B7490144B489C00E115D2 /* Lens.m in Sources */,
 				AE7B7493144B77C200E115D2 /* ToolEditor.m in Sources */,
 				AE489A79144E1DD40099CEF4 /* BeamSplitter.m in Sources */,
-				AE489A7D144E1F1F0099CEF4 /* Obstacle.m in Sources */,
+				AE489A7D144E1F1F0099CEF4 /* Sensor.m in Sources */,
 				AEDBC33D14528D9800EEDEF0 /* Beam.m in Sources */,
 				AEE3E2A1145332CC0074DBEF /* ParabolicMirror.m in Sources */,
+				AE472B781486EB3B00B118D5 /* LightFieldViewController.m in Sources */,
+				AE472B7C1486EDFF00B118D5 /* LightFieldView.m in Sources */,
+				AE472B7F1487EB8000B118D5 /* DiffractingInterface.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

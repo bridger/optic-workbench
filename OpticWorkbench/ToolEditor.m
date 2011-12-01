@@ -16,12 +16,14 @@
 @property (nonatomic, assign) bool rotates;
 @property (nonatomic, assign) bool resizes;
 @property (nonatomic, assign) bool focuses;
+@property (nonatomic, assign) bool colors;
+@property (nonatomic, assign) bool showsLightField;
 
 @end
 
 @implementation ToolEditor
 
-@synthesize workbench = _workbench, editPart = _editPart, rotates = _rotates, resizes = _resizes, focuses = _focuses;
+@synthesize workbench = _workbench, editPart = _editPart, rotates = _rotates, resizes = _resizes, focuses = _focuses, colors = _colors, showsLightField = _showsLightField;
 
 - (id)init {
     self = [super init];
@@ -100,6 +102,8 @@
     self.rotates = [_editPart conformsToProtocol:@protocol(RotatableOpticTool)];
     self.resizes = [_editPart conformsToProtocol:@protocol(ResizeableOpticTool)];
     self.focuses = [_editPart conformsToProtocol:@protocol(FocuseableOpticTool)];
+    self.colors = [_editPart conformsToProtocol:@protocol(ColorableOpticTool)];
+    self.showsLightField = [_editPart conformsToProtocol:@protocol(CapturingOpticTool)];
     
     
     if (self.rotates) {
@@ -176,6 +180,7 @@
     _isRotating = false;
     _isDragging = false;
     _isFocusing = false;
+    _hasMoved = false;
     
     if (_editPart != NULL) {
         _originalCenterPoint = _editPart.gamePosition;
@@ -227,8 +232,12 @@
                 
                 self.editPart = copy;
                 _isDragging = true;
+                _hasMoved = true;
                 _originalCenterPoint = copy.gamePosition;
                 [copy release];
+                if (self.colors) {
+                    [(OpticTool<ColorableOpticTool> *)_editPart randomizeColor];
+                }
             } else {
                 self.editPart = NULL;
             }
@@ -264,8 +273,12 @@
             newGamePoint.x += _originalCenterPoint.x;
             newGamePoint.y += _originalCenterPoint.y;
 
+            if (!_hasMoved) {
+                _hasMoved = true;
+            }
             
             _editPart.gamePosition = newGamePoint;
+            
         } else if (_isResizing) {
             //Find the new distance from the cursor to the center. This is half the new length            
             CGPoint newPoint = [self.workbench pixelToGameTransformPoint:point];
@@ -288,7 +301,14 @@
 }
 
 - (void)mouseUpAtWorkbenchPoint:(CGPoint)point {
-    
+    if (_isDragging && !_hasMoved) {
+        if (self.colors) {
+            [(OpticTool<ColorableOpticTool> *)_editPart randomizeColor];
+        }
+        if (self.showsLightField) {
+            [_workbench showLightFieldInspector:(OpticTool<CapturingOpticTool> *)_editPart];
+        }
+    }
 }
 
 - (void)keyUp:(NSEvent *)theEvent {

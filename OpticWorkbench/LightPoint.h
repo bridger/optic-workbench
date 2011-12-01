@@ -8,8 +8,9 @@
 
 #import "OpticTool.h"
 
-@interface LightPoint : OpticTool <RotatableOpticTool> {
+@interface LightPoint : OpticTool <RotatableOpticTool, ColorableOpticTool> {
     CGFloat _angle;
+    CGColorRef _color;
 }
 
 @end

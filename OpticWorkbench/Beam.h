@@ -8,6 +8,8 @@
 
 #import "OpticTool.h"
 
-@interface Beam : FlatOpticTool
+@interface Beam : FlatOpticTool <ColorableOpticTool> {
+     CGColorRef _color;
+}
 
 @end

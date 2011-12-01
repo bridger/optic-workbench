@@ -26,3 +26,23 @@
 
 CGPoint rayIntersectionOutsideRect(OpticRay *ray, NSRect rect);
 CGPoint rayPointAfterDistance(OpticRay *ray, CGFloat distance);
+
+CGColorRef createRandomColor();
+
+CGFloat normalizedAngle(CGFloat angle); //Returns an angle between -pi/2 and pi/2
+
+
+@interface CapturedOpticRay : NSObject {
+@private
+    CGFloat _position; //A value from 0.0 to 1.0, the position on the film it was captured
+    CGFloat _angle;
+    CGColorRef _color;
+}
+
+@property (nonatomic, readonly) CGFloat position;
+@property (nonatomic, readonly) CGFloat angle;
+@property (nonatomic, readonly) CGColorRef color;
+
+- (id)initWithPostion:(CGFloat)position angle:(CGFloat)angle color:(CGColorRef)color;
+
+@end

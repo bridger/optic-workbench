@@ -34,6 +34,11 @@
     bool _focuses;
     bool _isFocusing;
     
+    bool _colors;
+    bool _hasMoved;
+    
+    bool _showsLightField;
+    
     CGPoint _originalCenterPoint; //Where the tool was when we were first clicked
 }
 

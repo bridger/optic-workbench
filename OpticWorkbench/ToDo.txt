@@ -6,3 +6,4 @@
 - Profile for performance (turn of anti-aliasing?)
 √ Drag offset
 √ If an off-screen ray would intersect the rectangle again, draw it
+- Resizing the window doesn't reposition the focal length indicators

@@ -11,25 +11,45 @@
 
 @implementation Beam
 
+@synthesize color = _color;
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        [self randomizeColor];
+    }
+    return self;
+}
+
 
 - (NSArray *)startingRays {
     NSMutableArray *array = [NSMutableArray array];
-    
-    CGColorRef color = CGColorCreateGenericRGB(1.0, 0.0, 0.0, 1.0);
-    
+        
     CGPoint offset = CGPointMake(cos(_angle - M_PI_2) * 0.0001, sin(_angle - M_PI_2) * 0.0001);
-    for (CGFloat distance = 0; distance < _length; distance += 0.02) {
+    for (CGFloat distance = 0; distance < _length; distance += 0.008) {
         CGPoint position = CGPointMake(_flatToolOrigin.x + cos(_angle) * distance,
                                        _flatToolOrigin.y + sin(_angle) * distance);
         position.x += offset.x;
         position.y += offset.y;
         
-        [array addObject:[OpticRay rayWithPositionPostion:position angle:_angle - M_PI_2 color:color]];
+        [array addObject:[OpticRay rayWithPositionPostion:position angle:_angle - M_PI_2 color:_color]];
     }
     
-    CGColorRelease(color);
     
     return array;
+}
+
+- (void)setColor:(CGColorRef)color {
+    CGColorRef temp = _color;
+    _color = CGColorRetain(color);
+    CGColorRelease(temp);
+    [self.workbench opticToolAltered:self];
+}
+
+- (void)randomizeColor {
+    CGColorRef color = createRandomColor();
+    self.color = color;
+    CGColorRelease(color);
 }
 
 - (void)drawInContext:(CGContextRef)ctx {
@@ -47,6 +67,12 @@
     CGContextSetStrokeColorWithColor(ctx, strokeColor);
     CGColorRelease(strokeColor);
     CGContextStrokePath(ctx);
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    Beam *copy = [super copyWithZone:zone];
+    copy.color = _color;
+    return copy;
 }
 
 @end
