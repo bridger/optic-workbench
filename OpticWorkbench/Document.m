@@ -7,8 +7,10 @@
 //
 
 #import "Document.h"
+#import "OpticWorkbenchLayer.h"
 
 @implementation Document
+@synthesize opticWorkbenchView;
 
 - (id)init
 {
@@ -30,7 +32,13 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
+    
+    if (_puzzleToRestore) {
+        [opticWorkbenchView.opticWorkbenchLayer loadPuzzle:_puzzleToRestore];
+        
+        [_puzzleToRestore release];
+        _puzzleToRestore = NULL;
+    }
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
@@ -39,9 +47,9 @@
      Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
     You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
     */
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return nil;
+    NSDictionary *savedPuzzle = [opticWorkbenchView.opticWorkbenchLayer savePuzzle];
+    
+    return [NSKeyedArchiver archivedDataWithRootObject:savedPuzzle];
 }
 
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
@@ -51,9 +59,15 @@
     You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
     If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
     */
-    NSException *exception = [NSException exceptionWithName:@"UnimplementedMethod" reason:[NSString stringWithFormat:@"%@ is unimplemented", NSStringFromSelector(_cmd)] userInfo:nil];
-    @throw exception;
-    return YES;
+    
+    if (opticWorkbenchView != nil) {
+        
+        return [opticWorkbenchView.opticWorkbenchLayer loadPuzzle:[NSKeyedUnarchiver unarchiveObjectWithData:data]];
+    } else {
+        _puzzleToRestore = [[NSKeyedUnarchiver unarchiveObjectWithData:data] retain];
+
+        return YES;
+    }
 }
 
 + (BOOL)autosavesInPlace

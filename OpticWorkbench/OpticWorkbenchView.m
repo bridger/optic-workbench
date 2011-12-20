@@ -15,6 +15,8 @@
 
 @implementation OpticWorkbenchView
 
+@synthesize opticWorkbenchLayer = _layer;
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];

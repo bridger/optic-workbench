@@ -39,4 +39,7 @@
 - (CGPoint)pixelToGameTransformPoint:(CGPoint)point;
 - (CGRect)pixelToGameTransformRect:(CGRect)rect;
 
+- (BOOL)loadPuzzle:(NSDictionary *)puzzle;
+- (NSDictionary *)savePuzzle;
+
 @end

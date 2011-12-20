@@ -69,7 +69,7 @@
     if (angle < 0) { //If it hit the top of the sensor
         CGFloat distance = sqrt( pow(point.x - self.flatToolOrigin.x, 2) + pow(point.y - self.flatToolOrigin.y, 2) );
         
-        CapturedOpticRay *capturedRay = [[CapturedOpticRay alloc] initWithPostion:distance/self.length angle:ray.angle - self.angle color:ray.color];
+        CapturedOpticRay *capturedRay = [[CapturedOpticRay alloc] initWithPostion:distance/self.length angle:ray.angle - self.angle + M_PI color:ray.color];
         
         [_currentRays addObject:capturedRay];
         

@@ -20,4 +20,5 @@
 @property (assign) IBOutlet LightFieldView *lightFieldView;
 - (IBAction)copyLightField:(id)sender;
 
+
 @end

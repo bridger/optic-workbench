@@ -26,7 +26,7 @@
     NSMutableArray *array = [NSMutableArray array];
     CGPoint startPoint = self.gamePosition;
         
-    for (CGFloat currentAngle = 0; currentAngle < 2 * M_PI; currentAngle += M_PI/32 + 0.00001) {
+    for (CGFloat currentAngle = 0; currentAngle < 2 * M_PI; currentAngle += M_PI/64 + 0.00001) {
         [array addObject:[OpticRay rayWithPositionPostion:startPoint angle:currentAngle + _angle  color:_color]];
     }
     
@@ -67,5 +67,23 @@
     
     CGContextFillPath(ctx);
 }
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    [encoder encodeDouble:_angle forKey:@"angle"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    CGFloat angle = [decoder decodeDoubleForKey:@"angle"];
+    
+    self = [super initWithCoder:decoder];
+    if (self) {
+        [self randomizeColor];
+        self.angle = angle;
+    }
+    return self;
+}
+
 
 @end

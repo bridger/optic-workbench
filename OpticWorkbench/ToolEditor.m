@@ -220,6 +220,7 @@
         if ([hitTool isKindOfClass:[OpticTool class]]) {
             self.editPart = (OpticTool *)hitTool;
             _isDragging = true;
+            _hasMoved = true;
             _originalCenterPoint = _editPart.gamePosition;
         } else {
             

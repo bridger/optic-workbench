@@ -85,5 +85,20 @@
     return [NSArray arrayWithObject:[[ray copyWithPosition:bouncePoint angle:transformedAngle intensity:1.0] autorelease]];
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    [encoder encodeDouble:_interfaceRatio forKey:@"interfaceRatio"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    CGFloat interfaceRatio = [decoder decodeDoubleForKey:@"interfaceRatio"];
+    
+    self = [super initWithCoder:decoder];
+    if (self) {
+        _interfaceRatio = interfaceRatio;
+    }
+    return self;
+}
+
 
 @end

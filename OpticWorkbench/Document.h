@@ -7,7 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "OpticWorkbenchView.h"
 
-@interface Document : NSDocument
+@interface Document : NSDocument {
+    NSDictionary *_puzzleToRestore;
+}
+
+@property (assign) IBOutlet OpticWorkbenchView *opticWorkbenchView;
 
 @end

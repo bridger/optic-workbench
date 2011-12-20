@@ -128,7 +128,7 @@ CGColorRef createRandomColor() {
 }
 
 CGFloat normalizedAngle(CGFloat angle) {
-    int timesOverPi = (int)((angle + M_PI) / (2 * M_PI));
+    int timesOverPi = (int)floor((angle + M_PI) / (2 * M_PI));
     
     return angle - 2 * M_PI * timesOverPi;
 }

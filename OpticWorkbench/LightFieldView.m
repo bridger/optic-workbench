@@ -73,7 +73,7 @@
     
     for (CapturedOpticRay *ray in _capturedRays) {
         CGPoint point = CGPointMake(graphRegion.size.width * ray.position, 
-                                    graphRegion.size.height * (normalizedAngle(ray.angle) / M_PI + 1.0) );
+                                    graphRegion.size.height * (normalizedAngle(ray.angle) / M_PI) );
         
         CGContextBeginPath(ctx);
         CGContextAddArc(ctx, point.x + graphRegion.origin.x, point.y + graphRegion.origin.y, 3.0, 0, 2 * M_PI, 0);

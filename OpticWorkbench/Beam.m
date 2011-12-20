@@ -75,4 +75,18 @@
     return copy;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    
+    self = [super initWithCoder:decoder];
+    if (self) {
+        [self randomizeColor];
+    }
+    return self;
+}
+
+
 @end

@@ -111,6 +111,15 @@
                                          LIGHT_POINT_SIZE, 
                                          LIGHT_POINT_SIZE);
         [_toolTemplatesLayer addSublayer:testPoint];
+        
+        
+        DiffractingInterface *smallInterface = [[[DiffractingInterface alloc] init] autorelease];
+        smallInterface.flatToolOrigin = CGPointMake(TEMPLATE_SPACING * 9, TEMPLATE_SPACING + TEMPLATE_SIZE / 2);
+        smallInterface.angle = 0;
+        smallInterface.length = TEMPLATE_SIZE / 3;
+        smallInterface.workbench = self;
+        [_toolTemplatesLayer addSublayer:smallInterface];
+        
     }
     return self;
 }
@@ -308,6 +317,28 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
     } else {
         [super drawLayer:layer inContext:ctx];
     }
+}
+
+
+- (NSDictionary *)savePuzzle {    
+    NSDictionary *savedPuzzle = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 [_tools copy], @"tools", nil];
+    
+    return savedPuzzle;
+}
+
+- (BOOL)loadPuzzle:(NSDictionary *)puzzle {
+    //First clear the existing board
+    for (OpticTool *tool in _tools) {
+        [self removeOpticTool:tool];
+    }
+    
+    
+    NSSet *tools = [puzzle objectForKey:@"tools"];
+    for (OpticTool *tool in tools) {
+        [self addOpticTool:tool];
+    }
+    return YES;
 }
 
 

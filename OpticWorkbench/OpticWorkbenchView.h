@@ -13,4 +13,6 @@
     OpticWorkbenchLayer *_layer;
 }
 
+@property (nonatomic, readonly) OpticWorkbenchLayer *opticWorkbenchLayer;
+
 @end

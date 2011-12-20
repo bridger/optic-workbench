@@ -85,4 +85,20 @@
     return copy;
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [super encodeWithCoder:encoder];
+    [encoder encodeDouble:_focalLength forKey:@"focalLength"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    CGFloat focalLength = [decoder decodeDoubleForKey:@"focalLength"];
+    
+    self = [super initWithCoder:decoder];
+    if (self) {
+        self.focalLength = focalLength;
+    }
+    return self;
+}
+
+
 @end

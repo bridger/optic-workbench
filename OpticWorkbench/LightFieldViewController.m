@@ -62,7 +62,7 @@
     
     NSMutableString *copyString = [[NSMutableString alloc] init];
     for (CapturedOpticRay *ray in sortedLightField) {
-        [copyString appendFormat:@"{%f, %f}\n", [ray position], [ray angle]];
+        [copyString appendFormat:@"[%f, %f]\n", [ray position], normalizedAngle([ray angle])];
     }
     
     NSPasteboard *pboard = [NSPasteboard generalPasteboard];

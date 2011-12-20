@@ -59,6 +59,20 @@
 - (void)traceDidEnd {
 }
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeRect:NSRectFromCGRect(_gameFrame) forKey:@"gameFrame"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    CGRect gameFrame = NSRectToCGRect([decoder decodeRectForKey:@"gameFrame"]);
+    
+    self = [self init];
+    if (self) {
+        self.gameFrame = gameFrame;
+    }
+    return self;
+}
+
 @end
 
 
@@ -162,6 +176,27 @@
     copy.flatToolOrigin = _flatToolOrigin;
     copy.angle = _angle;
     return copy;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeDouble:_angle forKey:@"angle"];
+    [encoder encodeDouble:_length forKey:@"length"];
+    [encoder encodePoint:NSPointFromCGPoint(_flatToolOrigin) forKey:@"flatToolOrigin"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    CGFloat angle = [decoder decodeDoubleForKey:@"angle"];
+    CGFloat length = [decoder decodeDoubleForKey:@"length"];
+    CGPoint origin = NSPointToCGPoint([decoder decodePointForKey:@"flatToolOrigin"]);
+    
+    self = [self init];
+    if (self) {
+        self.angle = angle;
+        self.length = length;
+        self.flatToolOrigin = origin;
+    }
+    return self;
 }
 
 
