@@ -48,6 +48,8 @@
                                                                  multiplier:1.0 
                                                                    constant:0.0];
     [self addConstraint:constraint];
+    
+    _layer.toolEditor.undoManager = [self undoManager];
 }
 
 - (BOOL)acceptsFirstResponder {

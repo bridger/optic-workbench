@@ -23,7 +23,7 @@
 
 @implementation ToolEditor
 
-@synthesize workbench = _workbench, editPart = _editPart, rotates = _rotates, resizes = _resizes, focuses = _focuses, colors = _colors, showsLightField = _showsLightField;
+@synthesize workbench = _workbench, editPart = _editPart, rotates = _rotates, resizes = _resizes, focuses = _focuses, colors = _colors, showsLightField = _showsLightField, undoManager = _undoManager;
 
 - (id)init {
     self = [super init];
@@ -180,7 +180,8 @@
     _isRotating = false;
     _isDragging = false;
     _isFocusing = false;
-    _hasMoved = false;
+    _hasEdited = false;
+    _isNewPart = false;
     
     if (_editPart != NULL) {
         _originalCenterPoint = _editPart.gamePosition;
@@ -189,11 +190,13 @@
                          CGRectContainsPoint([_resizeLayerRight frame], point))) {
             
             _isResizing = true;
+            _originalLength = [(OpticTool<ResizeableOpticTool> *)_editPart length];
             
         } else if (_focuses && (CGRectContainsPoint([_focusLayerLeft frame], point) || 
                                 CGRectContainsPoint([_focusLayerRight frame], point))) { 
             
             _isFocusing = true;
+            _originalFocalLength = [(OpticTool<FocuseableOpticTool> *)_editPart focalLength];
             
         } else if (CGRectContainsPoint([_editIndicatorLayer frame], point)) {
             //Either a drag or a rotation
@@ -204,7 +207,7 @@
                 
                 //Clicked in the circle. It is a rotation
                 _isRotating = true;
-                _toolStartingAngle = [(OpticTool<RotatableOpticTool> *)_editPart angle];
+                _originalAngle = [(OpticTool<RotatableOpticTool> *)_editPart angle];
                 _editorStartingAngle = atan2(point.x - _editIndicatorLayer.position.x, point.y - _editIndicatorLayer.position.y);
                 
             } else {
@@ -220,7 +223,7 @@
         if ([hitTool isKindOfClass:[OpticTool class]]) {
             self.editPart = (OpticTool *)hitTool;
             _isDragging = true;
-            _hasMoved = true;
+            _hasEdited = true;
             _originalCenterPoint = _editPart.gamePosition;
         } else {
             
@@ -229,11 +232,13 @@
             if ([hitTemplate isKindOfClass:[OpticTool class]]) {
                 OpticTool *copy = [(OpticTool *)hitTemplate copy];
                 copy.gamePosition = [(OpticTool *)hitTemplate gamePosition];
-                [self.workbench addOpticTool:copy];
+                
+                [self setTool:copy onBoard:YES];            
                 
                 self.editPart = copy;
                 _isDragging = true;
-                _hasMoved = true;
+                _hasEdited = true;
+                _isNewPart = true;
                 _originalCenterPoint = copy.gamePosition;
                 [copy release];
                 if (self.colors) {
@@ -248,8 +253,7 @@
     if (_isDragging) {
         CGPoint clickCenter = [_workbench pixelToGameTransformPoint:point];
         
-        _originalCenterPoint.x -= clickCenter.x;
-        _originalCenterPoint.y -= clickCenter.y;
+        _dragCenterOffset = CGPointMake(_originalCenterPoint.x - clickCenter.x, _originalCenterPoint.y - clickCenter.y);
     }
     
 }
@@ -263,22 +267,22 @@
         if (_isRotating) {
             CGFloat newEditorAngle = atan2(point.x - _editIndicatorLayer.position.x, point.y - _editIndicatorLayer.position.y);
             CGFloat angleDifference = newEditorAngle - _editorStartingAngle;
-            CGFloat newToolAngle = _toolStartingAngle - angleDifference;
+            CGFloat newToolAngle = _originalAngle - angleDifference;
                         
             [(OpticTool<RotatableOpticTool> *)_editPart setAngle:newToolAngle];
             _editPart.gamePosition = _originalCenterPoint;
             
+            _hasEdited = true;
+            
         } else if (_isDragging) {
             //It is just a drag
             CGPoint newGamePoint = [_workbench pixelToGameTransformPoint:point];
-            newGamePoint.x += _originalCenterPoint.x;
-            newGamePoint.y += _originalCenterPoint.y;
-
-            if (!_hasMoved) {
-                _hasMoved = true;
-            }
+            newGamePoint.x += _dragCenterOffset.x;
+            newGamePoint.y += _dragCenterOffset.y;
             
             _editPart.gamePosition = newGamePoint;
+            
+            _hasEdited = true;
             
         } else if (_isResizing) {
             //Find the new distance from the cursor to the center. This is half the new length            
@@ -288,6 +292,9 @@
             
             [(OpticTool<ResizeableOpticTool> *)_editPart setLength:newDistance * 2];
             [_editPart setGamePosition:_originalCenterPoint]; //We want it to remain in the same place
+            
+            _hasEdited = true;
+            
         } else if (_isFocusing) {
             //Find the new distance from the cursor to the center. This is the new focal length         
             CGPoint newPoint = [self.workbench pixelToGameTransformPoint:point];
@@ -295,6 +302,8 @@
             CGFloat newDistance = sqrt( pow(newPoint.x - _originalCenterPoint.x, 2) + pow(newPoint.y - _originalCenterPoint.y, 2) );
             
             [(OpticTool<FocuseableOpticTool> *)_editPart setFocalLength:newDistance];
+            
+            _hasEdited = true;
         }
         
         [CATransaction commit];
@@ -302,13 +311,28 @@
 }
 
 - (void)mouseUpAtWorkbenchPoint:(CGPoint)point {
-    if (_isDragging && !_hasMoved) {
+    if (_isDragging && !_hasEdited) {
         if (self.colors) {
             [(OpticTool<ColorableOpticTool> *)_editPart randomizeColor];
         }
         if (self.showsLightField) {
             [_workbench showLightFieldInspector:(OpticTool<CapturingOpticTool> *)_editPart];
         }
+    } else if (_isDragging && _hasEdited && !_isNewPart) {
+        [[[self undoManager] prepareWithInvocationTarget:self] 
+         moveTool:_editPart toPosition:_originalCenterPoint];
+        
+    } else if (_isRotating && _hasEdited) {
+        [[[self undoManager] prepareWithInvocationTarget:self] 
+         rotateTool:(OpticTool<RotatableOpticTool> *)_editPart toAngle:_originalAngle];
+        
+    } else if (_isResizing && _hasEdited) {
+        [[[self undoManager] prepareWithInvocationTarget:self] 
+         resizeTool:(OpticTool<ResizeableOpticTool> *)_editPart toLength:_originalLength];
+        
+    } else if (_isFocusing && _hasEdited) {
+        [[[self undoManager] prepareWithInvocationTarget:self] 
+         focusTool:(OpticTool<FocuseableOpticTool> *)_editPart toFocalLength:_originalFocalLength];
     }
 }
 
@@ -319,9 +343,50 @@
             OpticTool *deleteTool = self.editPart;
             
             self.editPart = nil;
-            [self.workbench removeOpticTool:deleteTool];
-            
+            [self setTool:deleteTool onBoard:NO];            
         }
+    }
+}
+
+- (void)rotateTool:(OpticTool<RotatableOpticTool> *)tool toAngle:(CGFloat)angle {
+    [[[self undoManager] prepareWithInvocationTarget:self] rotateTool:tool toAngle:tool.angle];
+    
+    CGPoint gamePosition = tool.gamePosition;
+    tool.angle = angle;
+    tool.gamePosition = gamePosition;
+}
+
+- (void)resizeTool:(OpticTool<ResizeableOpticTool> *)tool toLength:(CGFloat)length {
+    [[[self undoManager] prepareWithInvocationTarget:self] resizeTool:tool toLength:tool.length];
+    
+    CGPoint gamePosition = tool.gamePosition;
+    tool.length = length;
+    tool.gamePosition = gamePosition;
+}
+
+- (void)focusTool:(OpticTool<FocuseableOpticTool> *)tool toFocalLength:(CGFloat)focalLength {
+    [[[self undoManager] prepareWithInvocationTarget:self] focusTool:tool toFocalLength:tool.focalLength];
+
+    tool.focalLength = focalLength;
+}
+
+- (void)moveTool:(OpticTool *)tool toPosition:(CGPoint)position {
+    [[[self undoManager] prepareWithInvocationTarget:self] moveTool:tool toPosition:tool.gamePosition];
+    
+    tool.gamePosition = position;
+}
+
+- (void)setTool:(OpticTool *)tool onBoard:(BOOL)onBoard {
+    [[[self undoManager] prepareWithInvocationTarget:self] setTool:tool onBoard:!onBoard];
+    
+    if (onBoard) {
+        [self.workbench addOpticTool:tool];
+    } else {
+        if (self.editPart == tool) {
+            self.editPart = nil;
+        }
+        
+        [self.workbench removeOpticTool:tool];
     }
 }
 

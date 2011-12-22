@@ -39,6 +39,8 @@
         [_puzzleToRestore release];
         _puzzleToRestore = NULL;
     }
+    
+    [self setUndoManager:[opticWorkbenchView undoManager]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
