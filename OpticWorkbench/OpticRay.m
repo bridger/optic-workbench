@@ -8,7 +8,6 @@
 
 #import "OpticRay.h"
 
-
 void HSVtoRGB( CGFloat *r, CGFloat *g, CGFloat *b, CGFloat h, CGFloat s, CGFloat v );
 
 CGPoint rayIntersectionOutsideRect(OpticRay *ray, NSRect rect) {
@@ -107,7 +106,7 @@ void HSVtoRGB( CGFloat *r, CGFloat *g, CGFloat *b, CGFloat h, CGFloat s, CGFloat
 	}
 }
 
-CGColorRef createRandomColor() {
+CGColorRef generateRandomColor() {
     CGFloat red;
     CGFloat green;
     CGFloat blue;

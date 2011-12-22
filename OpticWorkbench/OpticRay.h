@@ -27,7 +27,7 @@
 CGPoint rayIntersectionOutsideRect(OpticRay *ray, NSRect rect);
 CGPoint rayPointAfterDistance(OpticRay *ray, CGFloat distance);
 
-CGColorRef createRandomColor();
+CGColorRef generateRandomColor();
 
 CGFloat normalizedAngle(CGFloat angle); //Returns an angle between -pi/2 and pi/2
 

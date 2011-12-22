@@ -41,7 +41,7 @@
 }
 
 - (void)randomizeColor {
-    CGColorRef color = createRandomColor();
+    CGColorRef color = generateRandomColor();
     self.color = color;
     CGColorRelease(color);
 }

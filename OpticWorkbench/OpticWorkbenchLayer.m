@@ -261,7 +261,7 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
         
         CGContextSetLineWidth(ctx, 2.0);
         
-        NSMutableSet *liveRays = [NSMutableSet set];
+        NSMutableArray *liveRays = [NSMutableArray array];
         for (OpticTool *tool in _tools) {
             [tool traceDidStart];
             
@@ -272,8 +272,8 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
 #define MAX_ITERATIONS 500
         while ([liveRays count] > 0 && iterations < MAX_ITERATIONS) {
             iterations++;
-            OpticRay *nextRay = [liveRays anyObject];
-            [liveRays removeObject:nextRay];
+            OpticRay *nextRay = [liveRays lastObject];
+            [liveRays removeLastObject];
             
             //Find the first tool that this ray intersects with
             CGFloat minIntersection = CGFLOAT_MAX;
