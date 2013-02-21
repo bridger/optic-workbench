@@ -291,7 +291,7 @@ static inline CGRect pixelToGameTransformRect(CGRect rect, CGRect bounds) {
             CGPoint rayEndPoint;
             if (firstIntersection != NULL) {
                 // Transform the ray. Add the results back into liveRays
-                rayEndPoint = rayPointAfterDistance(nextRay, minIntersection);
+                rayEndPoint = rayPointAfterDistance(nextRay, minIntersection); //This is the point that the ray intersected the tool
                 
                 [liveRays addObjectsFromArray:[firstIntersection transformRay:nextRay atPoint:rayEndPoint afterDistance:minIntersection]];
                 rayEndPoint = gameToPixelTransformPoint(rayEndPoint, [self bounds]);

@@ -15,7 +15,7 @@
 
 @implementation OpticWorkbenchView
 
-@synthesize opticWorkbenchLayer = _layer;
+@synthesize opticWorkbenchLayer = layer;
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -28,28 +28,28 @@
 }
 
 - (void)awakeFromNib {
-    _layer = [[OpticWorkbenchLayer alloc] init];
-    [self setLayer:_layer];
+    layer = [[OpticWorkbenchLayer alloc] init];
+    [self setLayer:layer];
     [self setWantsLayer:YES];
-    _layer.view = self;
+    layer.view = self;
     
     CGColorRef background = CGColorCreateGenericGray(0.1, 1.0);
-    [_layer setBackgroundColor:background];
+    [layer setBackgroundColor:background];
     CGColorRelease(background);
     
     [self becomeFirstResponder];
     
     //Preserve the correct aspect ratio
-    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self 
-                                                                  attribute:NSLayoutAttributeWidth 
-                                                                  relatedBy:NSLayoutRelationEqual 
-                                                                     toItem:self 
-                                                                  attribute:NSLayoutAttributeHeight 
-                                                                 multiplier:1.0 
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self
+                                                                  attribute:NSLayoutAttributeWidth
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:self
+                                                                  attribute:NSLayoutAttributeHeight
+                                                                 multiplier:1.0
                                                                    constant:0.0];
     [self addConstraint:constraint];
     
-    _layer.toolEditor.undoManager = [self undoManager];
+    layer.toolEditor.undoManager = [self undoManager];
 }
 
 - (BOOL)acceptsFirstResponder {
@@ -63,23 +63,23 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    [_layer.toolEditor mouseDownAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
+    [layer.toolEditor mouseDownAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
-    [_layer.toolEditor mouseDraggedAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
+    [layer.toolEditor mouseDraggedAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-    [_layer.toolEditor mouseUpAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
+    [layer.toolEditor mouseUpAtWorkbenchPoint:[self convertWindowPointToWorkbench:[theEvent locationInWindow]]];
 }
 
 - (void)keyDown:(NSEvent *)theEvent {
-    //[_layer.toolEditor keyUp:theEvent];
+    //[layer.toolEditor keyUp:theEvent];
 }
 
 - (void)keyUp:(NSEvent *)theEvent {
-    [_layer.toolEditor keyUp:theEvent];
+    [layer.toolEditor keyUp:theEvent];
 }
 
 @end

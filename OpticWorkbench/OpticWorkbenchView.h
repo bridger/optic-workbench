@@ -10,7 +10,7 @@
 
 @class OpticWorkbenchLayer;
 @interface OpticWorkbenchView : NSView {
-    OpticWorkbenchLayer *_layer;
+    OpticWorkbenchLayer *layer;
 }
 
 @property (nonatomic, readonly) OpticWorkbenchLayer *opticWorkbenchLayer;
